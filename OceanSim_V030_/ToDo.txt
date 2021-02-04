@@ -1,0 +1,45 @@
+Pahansen:
+	+ Why very high boat speed at tws=20m/s?
+	+ Wing: local aoa and p dependent on rollRate
+	+ Scale down to 7m
+	+ Ballast
+	+ Documentation
+	+ Can we try the original koeffs for roll to see if they make sense?
+	
+
+Jakob:
+	+ Reefing servo 
+	+ Reefing logics
+	+ Power limit sail force due to shadowing
+	+ Se till att riggens krängmoment blir rätt inkl skrovhöjd och revning
+	+ Rig forces moments to Razola
+	+ Plot rudder
+	+ Add fins servo and control
+	+ Check rig forces against VLM
+		+ Added Wave resistance
+		+ Sea margin 5%
+
+--------------------------------------
+
++ Better (more realistic) engine model
++ Python functions
++ Test a few filters
++ Check jakobs AWA calcs...
++ Effects of rig mass & cg on Jx and KG
++ Check rolling against 2DOF model
++ Add rig inertia to roll equation
++ Make all design data centrally defined
++ Naca0015 => Naca0018
+
+
+--------------------------------------
+Done:
+	+ Make rho_water, rho_air and g part of truth
+	+ Move into Pd instead of T
+	+ 5 rigs
+	+ Add fins
+	+ Aerodynamic multirig factors 
+	
+	
+
+
