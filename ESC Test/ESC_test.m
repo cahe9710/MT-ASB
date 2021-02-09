@@ -1,4 +1,4 @@
-clc; close all; clear all;
+%clc; close all; clear all;
 alfa = -pi:0.1:pi;
 
 % alfa,cl,cd cm
@@ -95,4 +95,27 @@ Fx = D.*cos(alfa') - L.*sin(alfa');
 Fy = D.*sin(alfa') + L.*cos(alfa');
 R = sqrt(D.^2 + L.^2);
 
+%%
+
+figure(1);
 plot(Fx)
+xlabel('Wind Angle (deg)')
+ylabel('Force (N)')
+legend({'Force in x direction'},'Location','Southwest')
+grid on;
+zoom on;
+
+figure(2);
+plot(out.Force)
+xlabel('Time (s)')
+ylabel('Force (N)')
+legend({'Force in x direction'},'Location','Southwest')
+grid on;
+zoom on;
+
+figure(3);
+plot(out.s_ang)
+xlabel('Time (s)')
+ylabel('Wind Angle (rad)')
+grid on;
+zoom on;

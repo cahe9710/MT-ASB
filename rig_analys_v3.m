@@ -68,7 +68,6 @@ M2=-1/2*rho*v^2*c2^2*h2*Cm;
 M3=-1/2*rho*v^2*c3^2*h3*Cm;
 M=M1+M2+M3;
 
-
 %Alpha system till wingfixed system
 Fx1=D1.*cos(alphar')-L1.*sin(alphar');
 Fx2=D2.*cos(alphar')-L2.*sin(alphar');

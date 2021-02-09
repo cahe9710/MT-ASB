@@ -1,4 +1,4 @@
-close all, clear all, clc
+close all; clear all; clc;
 %% Input data
 Fx = -1.2; %force in mast based x-direction [N]
 Fy = 60; %force in mast based y-direction [N]
