@@ -13,13 +13,13 @@ end
 % Extremum Seeking Control Parameters
 freq = 10; % sample frequency
 dt = 1/freq;
-T = 150; % total period of simulation (in seconds)
+T = 50; % total period of simulation (in seconds)
 
 % perturbation parameters
 A = 2;  % amplitude
 omega = 1*2*pi; % 1 Hz
 phase = 0;
-K = 1;   % integration gain
+K = 2;   % integration gain
 
 % high pass filter
 butterorder = 1;
@@ -29,7 +29,7 @@ ys = zeros(4,butterorder+1)+y0;
 HPF = zeros(4,butterorder+1);
 
 uhat = u;
-    
+
 for i=1:T/dt
     t = (i-1)*dt;
     time(i) = t;
@@ -63,12 +63,20 @@ for i=1:T/dt
         HPFnew(n) = HPFnew(n)/a(1);
         HPF(n,butterorder+1) = HPFnew(n);
     end
+    
+    for r = 1:2
+        xi = HPFnew(r)*sin(omega*t + phase);
+        uhat(r) = uhat(r) + (xi.*K.*dt)';
+        u(r) = uhat(r) + A*sin(omega*t + phase);
+        uhats(r,i) = uhat(r);
+        uvals(r,i) = u(r);
         
-    xi = HPFnew.*sin(omega*t + phase);
-    uhat = uhat + (xi.*K.*dt)';
-    u = uhat + [A*sin(omega*t + phase), A*sin(omega*t + phase), A*sin(omega*t + phase), A*sin(omega*t + phase)];
-    uhats(:,i) = uhat;
-    uvals(:,i) = u;    
+        xi = HPFnew(r+2)*sin(omega*t + phase);
+        uhat(r+2) = uhat(r+2) + (xi.*K.*dt)';
+        u(r+2) = uhat(r+2) + A*sin(omega*t + phase);
+        uhats(r+2,i) = uhat(r+2);
+        uvals(r+2,i) = u(r+2);   
+    end
 end
 
 [sd,rigs,results,k] = sail_dym(u);
@@ -79,7 +87,7 @@ plot(time,uvals,time,uhats,'LineWidth',1.2)
 legend('u1','u2','u3','u4')
 grid on
 xlabel('Time(s)')
-ylabel('Angle (deg)')
+ylabel('AOA (deg)')
 
 set(gcf,'Position',[100 100 500 350])
 set(gcf,'PaperPositionMode','auto')
@@ -94,7 +102,7 @@ plot(time,yvals(3,:))
 plot(time,yvals(4,:))
 legend('Sail 1','Sail 2','Sail 3','Sail 4')
 xlabel('Time(s)')
-ylabel('Force in x direction (N)')
+ylabel('Force in bow direction (N)')
 
 % figure(3)
 % plotPressure(rigs,results,k+100);

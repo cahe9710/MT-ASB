@@ -1,4 +1,4 @@
-function y = sail_dym(wingsAngles)
+function [y,rigs,results,k] = sail_dym(wingsAngles)
 
 addpath('code');
 %clear;
@@ -38,7 +38,7 @@ addpath('code');
 %     trimAngles2D.data(:,7),...
 %     trimAngles2D.data(:,9)];
 
-AWAvec = 45;%20:2.5:170;
+AWAvec = 70;%20:2.5:170;
 % wingsEq = [1.1291  -34.6081
 %     1.0230  -22.6454
 %     0.9395  -13.0952
@@ -78,9 +78,9 @@ flapPos= [-0.1148 ; 0 ;0 ];%[-6.7146; 0;0];    %  %Same for all wings in this ca
 dxF=0;                      % Same for all wings in this case
 
 % RIGS DISRETIZATION
-Nxwing = 3;                  % Same for all wings in this case
-Nxflap = 6;                % Same for all flaps in this case
-Nzall = 9;                 % Same for all flaps and wings, in all cases
+Nxwing = 2;                  % Same for all wings in this case
+Nxflap = 3;                % Same for all flaps in this case
+Nzall = 7;                 % Same for all flaps and wings, in all cases
 
 % WAKE Parameters
 wakeTypeAll = 'fixed'; 
@@ -183,7 +183,7 @@ end
 
     % k=1;
         twa = deg2rad(AWAvec(k));
-        disp(AWAvec(k));
+%        disp(AWAvec(k));
 %         disp(AOAVec(jj));
 
         rigs = preProcessor(rigs,environment);
